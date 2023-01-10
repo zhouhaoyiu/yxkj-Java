@@ -85,7 +85,9 @@ public class RecordJobController {
                 recordJob.getXcfzrBase64(),
                 recordJob.getJcjlyBase64(),
 
-                recordJob.getSendOpenId()
+                recordJob.getSendOpenId(),
+                recordJob.getUnionWorkUuid(),
+                recordJob.getUnionMissionCId()
         );
         return res;
     }

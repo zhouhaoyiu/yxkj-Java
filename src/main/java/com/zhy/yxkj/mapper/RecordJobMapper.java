@@ -1,7 +1,7 @@
 package com.zhy.yxkj.mapper;
 
-import com.zhy.yxkj.domain.RecordJobMini;
 import com.zhy.yxkj.domain.RecordJob;
+import com.zhy.yxkj.domain.RecordJobMini;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -22,7 +22,17 @@ public interface RecordJobMapper {
     @Select("select * from recordjob where jobUuid = #{jobUuid}")
     List<RecordJob> getInfoByRecordJobUuid(@Param("jobUuid") String uuid);
 
-    @Insert("insert into recordjob(jobUuid,jobContent,jobDate,jobPosition,riskFactorsValue,safetyDisclosureValue,inspectionEquipmentValue,safetyProtectionValue,emerRescueValue,otherInfo,ventilationStartsTime,ventilationEndTime,jobStartTime,jobEndTime,isInterrupt,interruptStartTime,interruptEndTime,confinedSpaceType,positionList,interruptList,gasDetectionBase64Arr,signBoardBase64Arr,exhaustAirBase64Arr,xcfzr,jcjly,xcfzrBase64,jcjlyBase64,sendOpenId) values(#{jobUuid},#{jobContent},#{jobDate},#{jobPosition},#{riskFactorsValue},#{safetyDisclosureValue},#{inspectionEquipmentValue},#{safetyProtectionValue},#{emerRescueValue},#{otherInfo},#{ventilationStartsTime},#{ventilationEndTime},#{jobStartTime},#{jobEndTime},#{isInterrupt},#{interruptStartTime},#{interruptEndTime},#{confinedSpaceType},#{positionList},#{interruptList},#{gasDetectionBase64Arr},#{signBoardBase64Arr},#{exhaustAirBase64Arr},#{xcfzr},#{jcjly},#{xcfzrBase64},#{jcjlyBase64},#{sendOpenId})")
+    @Insert("insert into recordjob(jobUuid,jobContent,jobDate," +
+            "jobPosition,riskFactorsValue,safetyDisclosureValue,inspectionEquipmentValue," +
+            "safetyProtectionValue,emerRescueValue,otherInfo,ventilationStartsTime,ventilationEndTime," +
+            "jobStartTime,jobEndTime,isInterrupt,interruptStartTime,interruptEndTime,confinedSpaceType," +
+            "positionList,interruptList,gasDetectionBase64Arr,signBoardBase64Arr,exhaustAirBase64Arr,xcfzr," +
+            "jcjly,xcfzrBase64,jcjlyBase64,sendOpenId,unionWorkUuid,unionMissionCId)" +
+            " values(#{jobUuid},#{jobContent},#{jobDate},#{jobPosition},#{riskFactorsValue},#{safetyDisclosureValue}," +
+            "#{inspectionEquipmentValue},#{safetyProtectionValue},#{emerRescueValue},#{otherInfo},#{ventilationStartsTime}," +
+            "#{ventilationEndTime},#{jobStartTime},#{jobEndTime},#{isInterrupt},#{interruptStartTime},#{interruptEndTime}," +
+            "#{confinedSpaceType},#{positionList},#{interruptList},#{gasDetectionBase64Arr},#{signBoardBase64Arr},#{exhaustAirBase64Arr}," +
+            "#{xcfzr},#{jcjly},#{xcfzrBase64},#{jcjlyBase64},#{sendOpenId},#{unionWorkUuid},#{unionMissionCId})")
     Integer insertRecordJob(
             @Param("jobUuid") String uuid,
             @Param("jobContent") String jobContent,
@@ -53,7 +63,9 @@ public interface RecordJobMapper {
 
             @Param("xcfzrBase64") String xcfzrBase64,
             @Param("jcjlyBase64") String jcjlyBase64,
-            @Param("sendOpenId") String sendOpenId
+            @Param("sendOpenId") String sendOpenId,
+            @Param("unionWorkUuid") String unionWorkUuid,
+            @Param("unionMissionCId") Integer unionMissionCId
     );
 
     @Select("select jobId,jcjly,jobDate,jobUuid,jobContent from recordjob order by jobId desc")

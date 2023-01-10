@@ -37,5 +37,7 @@ public class RecordJob {
     public String xcfzrBase64;
     public String jcjlyBase64;
     public String sendOpenId;
+    public String unionWorkUuid;
+    public Integer unionMissionCId;
 
 }
