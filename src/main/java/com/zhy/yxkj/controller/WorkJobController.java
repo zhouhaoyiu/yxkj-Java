@@ -5,6 +5,7 @@ import com.zhy.yxkj.domain.WorkJob;
 import com.zhy.yxkj.domain.WorkJobMini;
 import com.zhy.yxkj.mapper.WorkJobMapper;
 import net.sf.json.JSONObject;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -22,7 +23,7 @@ public class WorkJobController {
     private WorkJobMapper workJobMapper;
 
     @GetMapping("adminGetSendWorkJobByPage")
-    public Object adminGetSendAllInfo(HttpServletRequest request) {
+    public Object adminGetSendAllInfo(@NotNull HttpServletRequest request) {
         int page = Integer.parseInt(request.getParameter("page"));
         int size = 100;
         int start = (page - 1) * size;
@@ -30,7 +31,7 @@ public class WorkJobController {
     }
 
     @PostMapping("addWorkJob")
-    public Object addWorkJob(@RequestBody WorkJob workJob) {
+    public @NotNull Object addWorkJob(@RequestBody @NotNull WorkJob workJob) {
         String uuid = String.valueOf(UUID.randomUUID());
         int res = workJobMapper.insertWorkJob(
                 uuid,
@@ -49,7 +50,7 @@ public class WorkJobController {
     }
 
     @GetMapping("getVerifyWorkJobByPage")
-    public Object getVerifyAllInfo(HttpServletRequest request) {
+    public Object getVerifyAllInfo(@NotNull HttpServletRequest request) {
         int page = Integer.parseInt(request.getParameter("page"));
         String verifyOpenId = request.getParameter("verifyOpenId");
 //        System.out.println("verifyOpenId:  " + verifyOpenId);
@@ -59,7 +60,7 @@ public class WorkJobController {
     }
 
     @GetMapping("getSendWorkJobByPage")
-    public Object getSendAllInfo(HttpServletRequest request) {
+    public Object getSendAllInfo(@NotNull HttpServletRequest request) {
         int page = Integer.parseInt(request.getParameter("page"));
         String sendOpenId = request.getParameter("sendOpenId");
 //        System.out.println(sendOpenId);
@@ -74,20 +75,20 @@ public class WorkJobController {
     }
 
     @GetMapping("getInfoByWorkJobUuid")
-    public Object getInfoByJobUuid(HttpServletRequest request) {
+    public Object getInfoByJobUuid(@NotNull HttpServletRequest request) {
         String workUuid = request.getParameter("workUuid");
         return workJobMapper.getInfoByWorkJobUuid(workUuid);
     }
 
     @GetMapping("getUnionWork")
-    public Object getUnionWork(HttpServletRequest request) {
+    public Object getUnionWork(@NotNull HttpServletRequest request) {
         String sendOpenId = request.getParameter("sendOpenId");
         int size = Integer.parseInt(request.getParameter("size"));
         return workJobMapper.getUnionWorkInfo(sendOpenId, size);
     }
 
     @GetMapping("getUnionMissionByWorkUuid")
-    public Object getUnionMissionByWorkUuid(HttpServletRequest request) {
+    public Object getUnionMissionByWorkUuid(@NotNull HttpServletRequest request) {
         String workUuid = request.getParameter("workUuid");
         System.out.println(workUuid);
         String res = workJobMapper.getUnionMissionByWorkUuid(workUuid);
@@ -96,7 +97,7 @@ public class WorkJobController {
 
 
     @PostMapping("verifyWorkJob")
-    public Object verifyWorkJob(@RequestBody VerifyWorkJob verifyWorkJob) {
+    public Object verifyWorkJob(@RequestBody @NotNull VerifyWorkJob verifyWorkJob) {
         System.out.println(verifyWorkJob);
         int workStatus = verifyWorkJob.getStatus();
         String spfzr = verifyWorkJob.getSpfzr();

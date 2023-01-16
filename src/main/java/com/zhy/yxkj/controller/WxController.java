@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -23,7 +24,7 @@ import org.springframework.web.client.RestTemplate;
 public class WxController {
 
     @GetMapping("login")
-    public Object wxLogin(HttpServletRequest request) {
+    public @NotNull Object wxLogin(@NotNull HttpServletRequest request) {
         String code = request.getParameter("code");
         String appid = "wx80637c771d2c9390";
         String secret = "1dcbf28c404db0820f0087fca8bf8c47";

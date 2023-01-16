@@ -1,5 +1,6 @@
 package com.zhy.yxkj;
 
+import org.jetbrains.annotations.NotNull;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +15,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication()
 public class YxkjApplication {
     @Bean
-    public ConfigurableServletWebServerFactory webServerFactory() {
+    public @NotNull ConfigurableServletWebServerFactory webServerFactory() {
         TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
         factory.addConnectorCustomizers(connector -> connector.setProperty("relaxedQueryChars", "|{}[]\\"));
         return factory;

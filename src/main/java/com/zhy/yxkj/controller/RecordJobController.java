@@ -2,6 +2,7 @@ package com.zhy.yxkj.controller;
 
 import com.zhy.yxkj.domain.RecordJob;
 import com.zhy.yxkj.mapper.RecordJobMapper;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -24,7 +25,7 @@ public class RecordJobController {
     }
 
     @GetMapping("adminGetSendRecordJobByPage")
-    public Object adminGetSendAllInfo(HttpServletRequest request) {
+    public Object adminGetSendAllInfo(@NotNull HttpServletRequest request) {
         int page = Integer.parseInt(request.getParameter("page"));
         int size = 100;
         int start = (page - 1) * size;
@@ -33,7 +34,7 @@ public class RecordJobController {
     }
 
     @GetMapping("getSendRecordJobByPage")
-    public Object getSendAllInfo(HttpServletRequest request) {
+    public Object getSendAllInfo(@NotNull HttpServletRequest request) {
         int page = Integer.parseInt(request.getParameter("page"));
         String sendOpenId = request.getParameter("sendOpenId");
 //        System.out.println(sendOpenId);
@@ -44,14 +45,14 @@ public class RecordJobController {
 
 
     @GetMapping("getInfoByRecordJobUuid")
-    public Object getInfoByJobUuid(HttpServletRequest request) {
+    public Object getInfoByJobUuid(@NotNull HttpServletRequest request) {
         String jobUuid = request.getParameter("jobUuid");
         return recordJobMapper.getInfoByRecordJobUuid(jobUuid);
     }
 
 
     @PostMapping("addRecordJob")
-    public Object addJob(@RequestBody RecordJob recordJob) {
+    public @NotNull Object addJob(@RequestBody @NotNull RecordJob recordJob) {
         String uuid = String.valueOf(UUID.randomUUID());
 
         int res = recordJobMapper.insertRecordJob(

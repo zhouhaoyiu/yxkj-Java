@@ -10,4 +10,11 @@ class YxkjApplicationTests {
     void contextLoads() {
     }
 
+    @Test
+    void webServerFactory() {
+    }
+
+    @Test
+    void main() {
+    }
 }
