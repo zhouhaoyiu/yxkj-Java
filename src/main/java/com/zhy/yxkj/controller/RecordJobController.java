@@ -55,7 +55,7 @@ public class RecordJobController {
     public @NotNull Object addJob(@RequestBody @NotNull RecordJob recordJob) {
         String uuid = String.valueOf(UUID.randomUUID());
 
-        int res = recordJobMapper.insertRecordJob(
+        return recordJobMapper.insertRecordJob(
                 uuid,
                 recordJob.getJobContent(),
                 recordJob.getJobDate(),
@@ -90,6 +90,5 @@ public class RecordJobController {
                 recordJob.getUnionWorkUuid(),
                 recordJob.getUnionMissionCId()
         );
-        return res;
     }
 }

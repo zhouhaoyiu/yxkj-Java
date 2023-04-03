@@ -69,9 +69,8 @@ public class WorkJobController {
 //        System.out.println(start);
 //        System.out.println(size);
 //        System.out.println(sendOpenId);
-        List<WorkJobMini> res = workJobMapper.selectWorkJobByPage(start, size, sendOpenId);
-//        System.out.println(res.toString());
-        return res;
+        //        System.out.println(res.toString());
+        return workJobMapper.selectWorkJobByPage(start, size, sendOpenId);
     }
 
     @GetMapping("getInfoByWorkJobUuid")
@@ -91,8 +90,7 @@ public class WorkJobController {
     public Object getUnionMissionByWorkUuid(@NotNull HttpServletRequest request) {
         String workUuid = request.getParameter("workUuid");
         System.out.println(workUuid);
-        String res = workJobMapper.getUnionMissionByWorkUuid(workUuid);
-        return res;
+        return workJobMapper.getUnionMissionByWorkUuid(workUuid);
     }
 
 

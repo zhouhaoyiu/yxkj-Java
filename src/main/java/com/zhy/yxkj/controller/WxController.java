@@ -35,7 +35,6 @@ public class WxController {
         headers.setContentType(MediaType.parseMediaType("application/json;charset=UTF-8"));
         HttpEntity<String> entity = new HttpEntity<String>(headers);
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-        String openid = response.getBody().split(",")[1].split(":")[1].replace("\"", "");
-        return openid;
+        return response.getBody().split(",")[1].split(":")[1].replace("\"", "");
     }
 }
