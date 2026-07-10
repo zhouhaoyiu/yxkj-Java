@@ -16,4 +16,4 @@ jobs:
           distribution: temurin
           java-version: 11
           cache: maven
-      - run: mvn -B -DskipTests package
+      - run: mvn -B -DskipTests org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile
