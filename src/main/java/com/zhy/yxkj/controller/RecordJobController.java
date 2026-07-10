@@ -5,8 +5,8 @@ import com.zhy.yxkj.mapper.RecordJobMapper;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.UUID;
 
 /**

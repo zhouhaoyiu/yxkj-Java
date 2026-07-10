@@ -4,13 +4,14 @@ import com.zhy.yxkj.domain.VerifyWorkJob;
 import com.zhy.yxkj.domain.WorkJob;
 import com.zhy.yxkj.domain.WorkJobMini;
 import com.zhy.yxkj.mapper.WorkJobMapper;
-import net.sf.json.JSONObject;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -43,7 +44,7 @@ public class WorkJobController {
                 workJob.getProtectiveMeasureGroups(),
                 workJob.getSendOpenId()
         );
-        JSONObject jsonRes = new JSONObject();
+        Map<String, Object> jsonRes = new HashMap<>();
         jsonRes.put("code", 1);
         jsonRes.put("data", res);
         return jsonRes;

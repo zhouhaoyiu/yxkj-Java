@@ -2,7 +2,7 @@ package com.zhy.yxkj.controller;
 
 import java.nio.charset.StandardCharsets;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpEntity;
