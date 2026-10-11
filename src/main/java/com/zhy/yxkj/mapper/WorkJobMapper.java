@@ -19,10 +19,10 @@ public interface WorkJobMapper {
     @Select("select workId, workDate, workUuid, status from workjob where sendOpenId = #{sendOpenId} order by workId desc limit #{start}, #{size}")
     List<WorkJobMini> selectWorkJobByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("sendOpenId") String sendOpenId);
 
-    @Select("select * from workjob where verifyOpenId = #{verifyOpenId} order by workId desc limit #{start}, #{size} ")
+    @Select("select * from workjob where status = 0 or verifyOpenId = #{verifyOpenId} order by workId desc limit #{start}, #{size} ")
     List<WorkJobMini> selectVerifyWorkJobByPage(@Param("verifyOpenId") String verifyOpenId, @Param("start") int start, @Param("size") int size);
 
-    @Update("update workjob set spfzr=#{spfzr}, status = #{workStatus}, spfzrInfo = #{spfzrInfo}, spfzrBase64 = #{spfzrBase64}, verifyOpenId = #{verifyOpenId},verifyDate=#{verifyDate} where workUuid=#{workUuid}")
+    @Update("update workjob set spfzr=#{spfzr}, status = #{workStatus}, spfzrInfo = #{spfzrInfo}, spfzrBase64 = #{spfzrBase64}, verifyOpenId = #{verifyOpenId},verifyDate=#{verifyDate} where workUuid=#{workUuid} and status = 0")
     Integer verifyWorkJob(@Param("spfzr") String spfzr,
                           @Param("workStatus") Integer workStatus,
                           @Param("spfzrInfo") String spfzrInfo,
@@ -34,8 +34,11 @@ public interface WorkJobMapper {
     @Select("select * from workjob where workUuid = #{workUuid}")
     List<WorkJob> getInfoByWorkJobUuid(@Param("workUuid") String uuid);
 
-    @Select("select * from workjob order by workId desc")
-    List<WorkJob> adminSelectWorkJobByPage(Integer start, int size);
+    @Select("select * from workjob order by workId desc limit #{start}, #{size}")
+    List<WorkJob> adminSelectWorkJobByPage(@Param("start") Integer start, @Param("size") int size);
+
+    @Select("select * from workjob where workUuid = #{uuid} for update")
+    List<WorkJob> lockWork(@Param("uuid") String uuid);
 
     @Insert("insert into workjob (workUuid, workDate, workList, zyfzr, jhry, zyry, protectiveMeasureGroups, sendOpenId, status) values (#{workUuid}, #{workDate}, #{workList}, #{zyfzr}, #{jhry}, #{zyry}, #{protectiveMeasureGroups}, #{sendOpenId}, 0)")
     Integer insertWorkJob(

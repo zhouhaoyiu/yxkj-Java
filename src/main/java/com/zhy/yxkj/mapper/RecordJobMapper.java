@@ -68,6 +68,6 @@ public interface RecordJobMapper {
             @Param("unionMissionCId") Integer unionMissionCId
     );
 
-    @Select("select jobId,jcjly,jobDate,jobUuid,jobContent from recordjob order by jobId desc")
+    @Select("select jobId,jcjly,jobDate,jobUuid,jobContent from recordjob order by jobId desc limit #{start}, #{size}")
     List<RecordJobMini> adminSelectRecordJobByPage(@Param("start") Integer start, @Param("size") Integer size);
 }
