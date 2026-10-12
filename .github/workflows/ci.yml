@@ -17,3 +17,7 @@ jobs:
           java-version: 25
           cache: maven
       - run: mvn -B verify
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 26.x
+      - run: node scripts/audit-dependencies.mjs
